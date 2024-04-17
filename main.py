@@ -7,6 +7,7 @@ import crud
 import schemas
 from db.database import SessionLocal
 
+
 app = FastAPI()
 
 
@@ -25,7 +26,7 @@ def read_all_authors(
         skip: int = 0,
         limit: int = 10
 ) -> List[schemas.Author]:
-    return crud.authors_list(db)[skip: skip + limit]
+    return crud.authors_list(db=db, skip=skip, limit=limit)
 
 
 @app.get("/authors/{author_id}/", response_model=schemas.Author)
@@ -55,7 +56,7 @@ def get_books(
         skip: int = 0,
         limit: int = 10
 ):
-    return crud.books_list(db)[skip: skip + limit]
+    return crud.books_list(db=db, skip=skip, limit=limit)
 
 
 @app.get("/books/{author_id}/", response_model=schemas.Book)

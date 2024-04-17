@@ -8,8 +8,10 @@ import schemas
 
 def authors_list(
         db: Session,
+        skip: int = 0,
+        limit: int = 10
 ):
-    return db.query(models.DBAuthor).all()
+    return db.query(models.DBAuthor).offset(skip).limit(limit).all()
 
 
 def get_author_by_id(
@@ -35,8 +37,10 @@ def create_author(db: Session, author: schemas.AuthorCreate):
 
 def books_list(
         db: Session,
+        skip: int = 0,
+        limit: int = 10
 ):
-    return db.query(models.DBBook).all()
+    return db.query(models.DBBook).offset(skip).limit(limit).all()
 
 
 def get_book_by_author_id(
